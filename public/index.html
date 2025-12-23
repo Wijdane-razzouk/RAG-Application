@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyNote - Zen Study</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <div class="app-container minimalist">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo-area">
+        <i class="ph-fill ph-notebook"></i>
+        <span>MyNote</span>
+        <button class="reset-btn" id="clear-all-btn" title="Reset everything">
+          <i class="ph ph-arrow-counter-clockwise"></i>
+        </button>
+      </div>
+
+      <nav class="side-nav">
+        <button class="nav-btn active" data-view="chat">
+          <i class="ph ph-chat-centered-dots"></i>
+          <span>Chat</span>
+        </button>
+        <button class="nav-btn" data-view="flashcards">
+          <i class="ph ph-cards"></i>
+          <span>Flashcards</span>
+        </button>
+        <button class="nav-btn" data-view="quiz">
+          <i class="ph ph-exam"></i>
+          <span>Quiz</span>
+        </button>
+      </nav>
+
+      <div class="section-divider"></div>
+
+      <div class="section-header">
+        <span class="section-title">Library</span>
+        <button class="add-source-btn" id="add-btn">
+          <i class="ph ph-plus"></i>
+        </button>
+      </div>
+
+      <div class="file-drop-zone mini" id="drop-zone">
+        <p>Drop PDF here</p>
+        <input type="file" id="file-input" hidden accept=".pdf" />
+      </div>
+
+      <ul class="file-list" id="file-list"></ul>
+
+      <div class="section-divider"></div>
+
+      <div class="section-header">
+        <span class="section-title">Recent Chats</span>
+      </div>
+      <div class="chat-tabs" id="chat-tabs"></div>
+      <button class="new-chat-btn" id="new-chat-btn">+ New Chat</button>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <main class="content-area">
+      <!-- CHAT VIEW -->
+      <section id="chat-view" class="view-panel active">
+        <header class="view-header">
+          <h2 id="current-chat-title">General Chat</h2>
+        </header>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="input-wrapper">
+          <div class="chat-input-container">
+            <input type="text" id="user-input" placeholder="Ask anything about your documents..." />
+            <button class="send-btn" id="send-btn">
+              <i class="ph ph-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- FLASHCARDS VIEW -->
+      <section id="flashcards-view" class="view-panel">
+        <header class="view-header">
+          <h2>Study Cards</h2>
+          <div class="flash-header-actions">
+            <button class="action-btn-sm" id="gen-flash-btn">
+              <i class="ph ph-sparkle"></i> Generate New
+            </button>
+          </div>
+        </header>
+
+        <div class="source-selector" id="source-selector">
+          <p>Select documents to include:</p>
+          <div id="flashcard-sources-list" class="sources-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div id="flashcards-grid" class="flashcards-grid">
+          <div class="empty-state">
+            <i class="ph ph-cards"></i>
+            <p>No cards yet. Click generate to start studying.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ VIEW -->
+      <section id="quiz-view" class="view-panel">
+        <header class="view-header">
+          <h2>Quiz Mode</h2>
+          <div class="flash-header-actions">
+            <button class="action-btn-sm" id="gen-quiz-btn">
+              <i class="ph ph-sparkle"></i> Create Quiz
+            </button>
+          </div>
+        </header>
+
+        <div class="source-selector" id="quiz-source-selector">
+          <p>Select documents for quiz:</p>
+          <div id="quiz-sources-list" class="sources-list">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+
+        <div id="quiz-container" class="quiz-container">
+          <div class="empty-state">
+            <i class="ph ph-exam"></i>
+            <p>Ready to test your knowledge? Click 'Create Quiz'.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading-layer" id="loading-layer">
+    <div class="loader-content">
+      <div class="spinner"></div>
+      <p>Thinking...</p>
+    </div>
+  </div>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

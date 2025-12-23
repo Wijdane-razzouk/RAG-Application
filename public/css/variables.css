@@ -1,0 +1,56 @@
+:root {
+    /* Calm professional palette with purple accent */
+    --bg-app: #f7f8fb;
+    --bg-sidebar: #ffffff;
+    --bg-panel: #ffffff;
+    --bg-surface: #f0f2f8;
+    --bg-contrast: #1f1f2b;
+
+    --border-subtle: #e5e7f0;
+    --border-active: #c5c8d9;
+
+    --text-primary: #1c1c28;
+    --text-secondary: #5b6074;
+    --text-muted: #8b8fa3;
+
+    --accent-primary: #6b4bff;
+    --accent-primary-soft: rgba(107, 75, 255, 0.12);
+    --accent-hover: #5d3fe6;
+
+    --success: #1fa37a;
+    --warning: #f0a500;
+
+    /* Typography */
+    --font-heading: 'Outfit', 'Inter', sans-serif;
+    --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* Spacing & Radius */
+    --radius-xs: 6px;
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-soft: 0 10px 30px rgba(20, 23, 38, 0.06);
+    --shadow-strong: 0 18px 50px rgba(20, 23, 38, 0.12);
+
+    /* Transitions */
+    --ease-smooth: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-app);
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    font-size: 15px;
+    height: 100vh;
+    overflow: hidden; /* App like feel */
+    -webkit-font-smoothing: antialiased;
+}
