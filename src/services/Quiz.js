@@ -28,14 +28,20 @@ export async function generateQuiz(topic = "main ideas", source = null) {
   const prompt = `
 Generate exactly 8 high-quality multiple-choice questions (MCQ).
 Ensure they are pedagogically High-Value but keep Questions/Choices PRECISE AND SHORT (Speed Optimization).
+Use the same language as the CONTEXT (choose the dominant language if mixed).
 Return JSON ONLY.
+
+Rules:
+- Output valid JSON with double quotes only.
+- No comments, no markdown, no trailing commas.
+- Keep each question <= 12 words and each choice <= 8 words.
 
 Format:
 [
   {
     "question": "Question text...",
     "choices": ["Option A", "Option B", "Option C", "Option D"],
-    "correctIndex": 1 // 0 for the first option, 1 for the second, etc.
+    "correctIndex": 1
   }
 ]
 

@@ -6,6 +6,7 @@ export function getLLM() {
     model: process.env.OLLAMA_MODEL,
     temperature: 0.2,
     numCtx: 4096,
+    numPredict: Number(process.env.OLLAMA_NUM_PREDICT || 512),
   });
 }
 

@@ -40,25 +40,23 @@ export async function answerQuestion(question, source, lang, onToken) {
   const prompt = `
 You are a strict document-based RAG assistant.
 
-Your task is to answer the QUESTION by:
-- Searching the CONTEXT for relevant information.
-- Combining information that may be distributed across multiple parts of the documents.
-- Synthesizing the answer ONLY from the provided CONTEXT.
+Goal: Answer the QUESTION using ONLY the CONTEXT.
 
-STRICT RULES:
-- Use ONLY the information present in the CONTEXT.
-- You MAY combine multiple excerpts if they clearly refer to the same concept.
-- Do NOT use external knowledge.
-- Do NOT guess missing information.
-- If the CONTEXT does not contain enough information to build a reliable answer, respond EXACTLY with:
+Rules:
+- Use only facts explicitly stated in CONTEXT.
+- You may combine multiple excerpts if they describe the same fact.
+- Do not use outside knowledge or assumptions.
+- Do not infer, speculate, or suggest implications.
+- Do not mention "document", "context", or "source" in the answer.
+- If CONTEXT lacks the information needed, respond EXACTLY with:
   "The documents do not provide enough information to answer this question."
 
-ANSWER GUIDELINES:
-- Write a clear, synthesized explanation.
-- Prefer structured answers (paragraphs or bullet points).
-- Each statement MUST be supported by the CONTEXT.
+Answer format:
+- Provide a clear, concise response in ${lang || "fr"}.
+- Prefer paragraphs or bullet points.
+- Support each statement with citations in the form [#] matching the CONTEXT ids.
+- If you cannot fully answer, output only the exact fallback sentence and nothing else.
 
-Language: ${lang || 'fr'}.
 
 CONTEXT:
 ${context}
@@ -77,7 +75,7 @@ ${question}
     return {
       raw: fullText,
       sources: docs.map((d, i) => ({
-        id: `#${i + 1}`,
+        // id: `#${i + 1}`,
         source: d.metadata.source,
         page: d.metadata.page,
       })),
